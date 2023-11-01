@@ -1,11 +1,15 @@
 using Serilog;
+using WSLab.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Add email sender service
+builder.Services.AddTransient<IEmailSender, EmailSender>();
 
 // Configure Serilog first
 Log.Logger = new LoggerConfiguration()
     .Enrich.FromLogContext()
-    .WriteTo.File("Logs/log.log", rollingInterval: RollingInterval.Day)
+    .WriteTo.File("Logs/log.log", rollingInterval: RollingInterval.Minute)
     .CreateLogger();
 
 // Add services to the container.
