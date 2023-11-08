@@ -1,4 +1,7 @@
+using Microsoft.EntityFrameworkCore;
 using Serilog;
+using WSLab.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +13,11 @@ Log.Logger = new LoggerConfiguration()
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Add DbContext.
+builder.Services.AddDbContext<DataBaseContext>(options =>
+    options.UseSqlServer(builder.Configuration
+    .GetConnectionString("DefaultConnection")));
 
 builder.Logging.ClearProviders();
 
