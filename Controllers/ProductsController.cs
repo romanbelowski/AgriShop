@@ -102,6 +102,23 @@ namespace WSLab.Controllers
             return RedirectToAction("Index");
         }
 
+        // Delete/Remove from DB Table
+        [HttpPost]
+        public async Task<IActionResult> Delete(UpdateProductViewModel updateProductRequest)
+        {
+            var product = await dataBaseContext.Products.FindAsync(updateProductRequest.Id);
+
+            if (product != null) {
+                dataBaseContext.Products.Remove(product);
+                await dataBaseContext.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
+         
     }
 
 }
