@@ -102,10 +102,6 @@ namespace WSLab.Controllers
             return RedirectToAction("Index");
         }
 
-
-
-
-
     }
 
 }
