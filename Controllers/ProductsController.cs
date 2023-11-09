@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WSLab.Data;
 using WSLab.Models;
 using WSLab.Models.Domain;
@@ -14,6 +15,14 @@ namespace WSLab.Controllers
             this.dataBaseContext = dataBaseContext;
         }
 
+
+        [HttpGet]
+
+        public async Task< IActionResult> Index()
+        {
+            var products = await dataBaseContext.Products.ToListAsync();
+            return View(products);
+        }
 
         [HttpGet]
         public IActionResult Add()

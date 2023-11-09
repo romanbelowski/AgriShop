@@ -1,0 +1,66 @@
+﻿@model List<WSLab.Models.Domain.Product>;
+@{
+}
+
+<h1>Products List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Description
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+                Image
+            </th>
+            <th>
+                Avaible Quantity
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.Image)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => product.AvaibleQuantity)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@product.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@product.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@product.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
