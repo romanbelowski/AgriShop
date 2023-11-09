@@ -1,7 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using WSLab.Data;
-using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
