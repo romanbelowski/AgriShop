@@ -52,7 +52,31 @@ namespace WSLab.Controllers
             return RedirectToAction("Add");
         }
 
+        // Edit/View DB Table
 
+        [HttpGet]
+        public async Task<IActionResult> View(Guid id)
+        {
+            var product = await dataBaseContext.Products.FirstOrDefaultAsync(p => p.Id == id);
+
+            if (product != null)
+            {
+                var viewModel = new UpdateProductViewModel()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = product.Name,
+                    Description = product.Description,
+                    Category = product.Category,
+                    Price = product.Price,
+                    Image = product.Image,
+                    AvaibleQuantity = product.AvaibleQuantity
+
+                };
+                return View(viewModel);
+            }
+
+            return RedirectToAction("Index");
+        }
 
 
 
